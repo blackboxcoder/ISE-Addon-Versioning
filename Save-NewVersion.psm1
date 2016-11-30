@@ -6,12 +6,6 @@
     
 }Export-Modulemember -Function Save-NewVersion
 
-
-Function Get-Version{
-    [void][Reflection.Assembly]::LoadWithPartialName('Microsoft.VisualBasic')
-    $Version = [Microsoft.VisualBasic.Interaction]::InputBox('Enter actual Version:', 'Version')
-    return $Version
-}
 Function Get-CurrentPath{
     return $psISE.CurrentFile.FullPath
 }
@@ -41,7 +35,6 @@ Function Copy-NewVersion{
     $NewFile = Join-Path -Path $NewSavePath -ChildPath $FileName
     $psISE.CurrentFile.SaveAs($NewFile)
 }
-
 Function Set-NewVersion{
     return [int]$Value = [int]((Split-Path (Split-Path -Parent -Path (Get-CurrentPath)) -Leaf).Replace("Version","")) +1
 }
